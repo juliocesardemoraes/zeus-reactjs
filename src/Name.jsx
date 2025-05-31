@@ -1,5 +1,10 @@
-import style from "./name.module.css";
-
 export default function Name() {
-  return <h1 className={style["text-green"]}>Julio</h1>;
+  const age = 29;
+  const name = "Julio";
+
+  const getName = () => {
+    return `${name} : ${age}`;
+  };
+
+  return <h1>{1 + 2}</h1>;
 }
