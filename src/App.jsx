@@ -1,11 +1,5 @@
 import Student from "./Student";
 
-const createStudent = (name, age, email, course) => {
-  return name;
-};
-
-createStudent(name);
-
 function App() {
   return (
     <>
