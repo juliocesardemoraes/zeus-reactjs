@@ -1,10 +1,10 @@
-import Name from "./Name";
+import Card from "./Card";
 
 function App() {
   return (
     <>
-      <h1>Ola </h1>
-      <Name></Name>
+      <h1>Ola</h1>
+      <Card></Card>
     </>
   );
 }
