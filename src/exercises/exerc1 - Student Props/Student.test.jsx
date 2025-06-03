@@ -2,7 +2,6 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import Student from "./Student";
 import { describe, it, expect } from "vitest";
-import "@testing-library/jest-dom/vitest";
 
 describe("Exercício de Props no Student", () => {
   it("renderiza com todos os props presentes", () => {
