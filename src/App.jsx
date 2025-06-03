@@ -1,33 +1,46 @@
+import { useEffect } from "react";
 import { useState } from "react";
 
 function App() {
-  const [counter, setCounter] = useState(0);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
-  // RENDER 1 - 0
-  // ATUALIZO O VALOR DO COUNTER PRA 1
-  // RENDER 2 - 1
-  // RENDER 2 - 1
-
-  const increment = () => {
-    setCounter((prev) => {
-      return prev + 1;
-    });
-  };
-
-  const decrement = () => {
-    setCounter((prev) => {
-      return prev - 1;
-    });
-  };
+  useEffect(() => {
+    console.log("TITLE", title);
+  }, [title]);
 
   return (
     <>
-      <h1>Ciclo de vida</h1>
-      <h2>{counter}</h2>
-      <button onClick={increment}>+</button>
-      <button onClick={decrement}>-</button>
+      <h1>Criar Tarefa</h1>
+      <input
+        type="text"
+        name="title"
+        placeholder="Digite um título"
+        id="title"
+        value={title}
+        onChange={(event) => {
+          setTitle(event.target.value);
+        }}
+      />
+
+      <textarea
+        name="description"
+        placeholder="Digite uma descrição"
+        id=""
+        onChange={(event) => {
+          setDescription(event.target.value);
+        }}
+      ></textarea>
+
+      <h1>Lista de Tarefas</h1>
+      <h2>{title}</h2>
+      <h3>{description}</h3>
     </>
   );
 }
 
 export default App;
+
+// onClick
+// onChange
+// onSubmit
