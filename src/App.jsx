@@ -1,67 +1,101 @@
-import { useEffect } from "react";
 import { useState } from "react";
 import { tasksMock } from "./mock/TasksMock";
+import "./globals.css";
 
 function App() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tasks, setTasks] = useState(tasksMock);
 
-  useEffect(() => {
-    console.log("TITLE", title);
-  }, [title]);
+  const toggleTask = () => {};
+  const deleteTask = () => {};
 
   return (
     <>
-      <h1>Criar Tarefa</h1>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
+      <div className="form-section m-4">
+        <h1>Criar Tarefa</h1>
 
-          setTasks((prev) => {
-            return [
-              ...prev,
-              {
-                title,
-                description,
-                done: false,
-              },
-            ];
-          });
-        }}
-      >
-        <input
-          type="text"
-          name="title"
-          placeholder="Digite um título"
-          id="title"
-          value={title}
-          onChange={(event) => {
-            setTitle(event.target.value);
+        <form
+          className="task-form"
+          onSubmit={(event) => {
+            event.preventDefault();
+
+            setTasks((prev) => {
+              return [
+                ...prev,
+                {
+                  title,
+                  description,
+                  done: false,
+                },
+              ];
+            });
           }}
-        />
+        >
+          <input
+            type="text"
+            name="title"
+            placeholder="Digite um título"
+            id="title"
+            value={title}
+            onChange={(event) => {
+              setTitle(event.target.value);
+            }}
+            required
+          />
 
-        <textarea
-          name="description"
-          placeholder="Digite uma descrição"
-          id=""
-          onChange={(event) => {
-            setDescription(event.target.value);
-          }}
-        ></textarea>
+          <textarea
+            name="description"
+            placeholder="Digite uma descrição"
+            value={description}
+            onChange={(event) => {
+              setDescription(event.target.value);
+            }}
+          />
 
-        <button type="submit">Criar Tarefa</button>
-      </form>
+          <button type="submit">Criar Tarefa</button>
+        </form>
+      </div>
 
-      <h1>Lista de Tarefas</h1>
-      {tasks.map((task, index) => {
-        return (
-          <div key={index}>
-            <h2>{task.title}</h2>
-            <h3>{task.description}</h3>
-          </div>
-        );
-      })}
+      <div className="form-section m-4">
+        <h1>Lista de Tarefas</h1>
+        <ul className="task-list">
+          {tasks.map((task, index) => {
+            return (
+              <li
+                key={index}
+                className={`task-item ${task.done ? "completed" : ""}`}
+              >
+                <div className="task-content">
+                  <label className="checkbox-container">
+                    <input
+                      type="checkbox"
+                      checked={task.done}
+                      onChange={() => toggleTask(index)}
+                    />
+                    <span className="checkmark"></span>
+                  </label>
+
+                  <div className="task-details">
+                    <h2 className="task-title">{task.title}</h2>
+                    {task.description && (
+                      <p className="task-description">{task.description}</p>
+                    )}
+                  </div>
+                </div>
+
+                <button
+                  className="delete-btn"
+                  onClick={() => deleteTask(index)}
+                  aria-label="Deletar tarefa"
+                >
+                  ×
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </>
   );
 }
