@@ -7,8 +7,9 @@ function App() {
   const [description, setDescription] = useState("");
   const [tasks, setTasks] = useState(tasksMock);
 
-  const toggleTask = () => {};
-  const deleteTask = () => {};
+  const toggleTask = (index) => {};
+
+  const deleteTask = (index) => {};
 
   return (
     <>
